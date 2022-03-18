@@ -15,20 +15,21 @@
         <constructor-arg value="Neil"/>
     </bean>
 
-    <bean id="musicBean"
-          class="com.gmail.alexejkrawez.ClassicalMusic">
-    </bean>
+    <bean id="classicalMusicBean" class="com.gmail.alexejkrawez.ClassicalMusic"/>
+    <bean id="rockMusicBean" class="com.gmail.alexejkrawez.RockMusic"/>
+    <bean id="countryMusicBean" class="com.gmail.alexejkrawez.CountryMusic"/>
+
     <bean id="musicPlayer" class="com.gmail.alexejkrawez.MusicPlayer">
-        <!--передача другого бина в конструктор-->
-        <constructor-arg ref="musicBean"/>
-        <!--передача другого бина в параметр сеттера-->
-        <property name="music" ref="musicBean"/>
-        <!--передача значений в параметр сеттера-->
-<!--        <property name="name" value="Some name"/>-->
-<!--        <property name="volume" value="50"/>-->
-        <!--передача значений в параметр сеттера из импортированного файла-->
+        <property name="music">
+            <list value-type="com.gmail.alexejkrawez.Music">
+                <ref bean="classicalMusicBean"/>
+                <ref bean="rockMusicBean"/>
+                <ref bean="countryMusicBean"/>
+            </list>
+        </property>
         <property name="name" value="${musicPlayer.name}"/>
         <property name="volume" value="${musicPlayer.volume}"/>
     </bean>
+
 
 </beans>
