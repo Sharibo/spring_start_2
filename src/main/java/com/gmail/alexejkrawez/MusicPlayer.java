@@ -1,43 +1,21 @@
 package com.gmail.alexejkrawez;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MusicPlayer {
-    private List<Music> musicList = new ArrayList<Music>();
-    private String name;
-    private int volume;
+    private Music music1;
+    private Music music2;
 
-    public MusicPlayer() {
+    @Autowired
+    public MusicPlayer(@Qualifier("rockMusic") Music music1,
+                       @Qualifier("classicalMusicBean") Music music2) {
+        this.music1 = music1;
+        this.music2 = music2;
     }
-
-    //IoC
-    public MusicPlayer(List<Music> musicList) {
-        this.musicList = musicList;
-    }
-
-    public void setMusic(List<Music> musicList) {
-        this.musicList = musicList;
-    }
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getVolume() {
-        return volume;
-    }
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
-    public void playMusic() {
-        System.out.println("Playing: ");
-        for (Music musicGenre : musicList) {
-            System.out.println("- " + musicGenre.getSong());
-        }
+    public String playMusic() {
+        return "Playing: " + music1.getSong() + ", " + music2.getSong();
     }
 }
