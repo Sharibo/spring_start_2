@@ -7,32 +7,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:property-placeholder location="classpath:musicPlayer.properties"/>
-
-
-    <bean id="testBean"
-          class="com.gmail.alexejkrawez.TestBean">
-        <constructor-arg value="Neil"/>
-    </bean>
-
-    <bean id="musicBean"
-          class="com.gmail.alexejkrawez.ClassicalMusic"
-          init-method="initClassicalMusic"
-          destroy-method="destroyClassicalMusic"
-          factory-method="getClassicalMusic">
-    </bean>
-    <bean id="musicPlayer" class="com.gmail.alexejkrawez.MusicPlayer"
-          scope="prototype">
-        <!--передача другого бина в конструктор-->
-        <constructor-arg ref="musicBean"/>
-        <!--передача другого бина в параметр сеттера-->
-        <property name="music" ref="musicBean"/>
-        <!--передача значений в параметр сеттера-->
-<!--        <property name="name" value="Some name"/>-->
-<!--        <property name="volume" value="50"/>-->
-        <!--передача значений в параметр сеттера из импортированного файла-->
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
+    <!--Включает сканирование кода на наличие спринг-аннотацией-->
+    <context:component-scan base-package="com.gmail.alexejkrawez"/>
 
 </beans>
