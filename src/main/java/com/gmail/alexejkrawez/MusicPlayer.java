@@ -1,16 +1,14 @@
 package com.gmail.alexejkrawez;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 
-@Component
+
 public class MusicPlayer {
     private Music music1;
     private Music music2;
     private Music music3;
 
-    @Autowired
+
     public MusicPlayer(@Qualifier("classicalMusicBean") Music music1,
                        @Qualifier("rockMusic") Music music2,
                        @Qualifier("countryMusic") Music music3) {
