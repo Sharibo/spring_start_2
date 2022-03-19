@@ -3,6 +3,8 @@ package com.gmail.alexejkrawez;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Random;
+
 @Component
 public class Computer {
     private int id;
@@ -16,7 +18,8 @@ public class Computer {
 
     @Override
     public String toString() {
-        return "Computer " + id + " " + musicPlayer.playMusic();
+        return "Computer " + id + " " + musicPlayer.playMusic(MusicStyle.values()[
+                new Random().nextInt(MusicStyle.values().length)]);
     }
 
 }
